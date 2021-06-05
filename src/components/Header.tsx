@@ -1,7 +1,29 @@
 import React from 'react';
 import { View, Text, StatusBar, StyleSheet } from 'react-native';
+import { dark, light } from '../assets/themes';
 
-export function Header() {
+interface HeaderProps {
+  darkTheme: boolean;
+}
+
+export function Header({ darkTheme }: HeaderProps) {
+  const styles = StyleSheet.create({
+    header: {
+      paddingTop: StatusBar.currentHeight,
+      paddingBottom: 44,
+      backgroundColor: darkTheme ? dark.blue : light.blue,
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row'
+    },
+    headerText: {
+      fontSize: 24,
+      color: darkTheme ? dark.white : light.white,
+      fontFamily: 'Poppins-Regular',
+    }
+  });
+
+  
   return (
     <View style={styles.header}>
       <Text style={styles.headerText}>to.</Text>
@@ -10,18 +32,3 @@ export function Header() {
   )
 }
 
-const styles = StyleSheet.create({
-  header: {
-    paddingTop: StatusBar.currentHeight,
-    paddingBottom: 44,
-    backgroundColor: '#273FAD',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  headerText: {
-    fontSize: 24,
-    color: '#FFF',
-    fontFamily: 'Poppins-Regular',
-  }
-});
